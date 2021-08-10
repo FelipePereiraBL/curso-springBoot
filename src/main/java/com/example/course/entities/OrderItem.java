@@ -7,21 +7,22 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import com.example.course.entities.pk.OrderItemPK;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="tb_order_item")
 public class OrderItem implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-	
+
 	@EmbeddedId
-	private OrderItemPK id;
+	private OrderItemPK id=new OrderItemPK();
 	private Integer qauntity;
 	private Double price;
-	
+
 	public OrderItem()
 	{
-		
+
 	}
 	public OrderItem(Order order,Product product,Integer qauntity, Double price) 
 	{
@@ -31,7 +32,8 @@ public class OrderItem implements Serializable
 		id.setOrder(order);
 		id.setProduct(product);
 	}
-	
+
+	@JsonIgnore
 	public Order getOrder()
 	{
 		return id.getOrder();
@@ -40,7 +42,7 @@ public class OrderItem implements Serializable
 	{
 		id.setOrder(order);
 	}
-	
+
 	public Product getProduct()
 	{
 		return id.getProduct();
@@ -49,7 +51,7 @@ public class OrderItem implements Serializable
 	{
 		id.setProduct(product);
 	}
-	
+
 	public Integer getQauntity() 
 	{
 		return qauntity;
@@ -58,7 +60,7 @@ public class OrderItem implements Serializable
 	{
 		this.qauntity = qauntity;
 	}
-	
+
 	public Double getPrice()
 	{
 		return price;
@@ -67,7 +69,7 @@ public class OrderItem implements Serializable
 	{
 		this.price = price;
 	}
-	
+
 	@Override
 	public int hashCode() 
 	{
@@ -83,19 +85,19 @@ public class OrderItem implements Serializable
 			return true;
 		if (obj == null)
 			return false;
-		
+
 		if (getClass() != obj.getClass())
 			return false;
-		
+
 		OrderItem other = (OrderItem) obj;
-		
+
 		if (id == null) 
 		{
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		
+
 		return true;
 	}
 }

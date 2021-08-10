@@ -13,14 +13,14 @@ import com.example.course.entities.Product;
 public class OrderItemPK implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-	
+
 	@ManyToOne
 	@JoinColumn(name="order_id")
 	private Order order;
 	@ManyToOne
 	@JoinColumn(name="product_id")
 	private Product product;
-	
+
 	public Order getOrder() 
 	{
 		return order;
@@ -29,7 +29,7 @@ public class OrderItemPK implements Serializable
 	{
 		this.order = order;
 	}
-	
+
 	public Product getProduct() 
 	{
 		return product;
@@ -38,7 +38,7 @@ public class OrderItemPK implements Serializable
 	{
 		this.product = product;
 	}
-	
+
 	@Override
 	public int hashCode() 
 	{
@@ -55,26 +55,26 @@ public class OrderItemPK implements Serializable
 			return true;
 		if (obj == null)
 			return false;
-		
+
 		if (getClass() != obj.getClass())
 			return false;
-		
+
 		OrderItemPK other = (OrderItemPK) obj;
-		
+
 		if (order == null) 
 		{
 			if (other.order != null)
 				return false;
 		} else if (!order.equals(other.order))
 			return false;
-		
+
 		if (product == null) 
 		{
 			if (other.product != null)
 				return false;
 		} else if (!product.equals(other.product))
 			return false;
-		
+
 		return true;
 	}
 }
